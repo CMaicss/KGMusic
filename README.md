@@ -21,7 +21,7 @@
   </p>
 </p>
 
-![images](https://github.com/iAJue/MoeKoeMusic/raw/main/images/5.png)
+![images](./images/1.png)
 
 ## 前言
 

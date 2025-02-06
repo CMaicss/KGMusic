@@ -1,6 +1,7 @@
 <template>
     <header>
         <nav class="navigation">
+            <img src="https://www.kugou.com/common/images/icon_logo_v20.png" alt="" class="cmhead1_i1">
             <div class="navigation">
                 <button class="nav-arrow" @click="goBack" :disabled="!canGoBack">
                     <i class="fas fa-chevron-left"></i>
@@ -161,7 +162,11 @@ const handleClickOutside = (event) => {
 <style scoped>
 .navigation {
     display: flex;
-    gap: 10px;
+}
+
+.cmhead1_i1 {
+    width: 110px;
+    height: 28px;
 }
 
 .nav-arrow {
@@ -175,19 +180,14 @@ const handleClickOutside = (event) => {
 }
 
 .nav-arrow:disabled i {
-    color: #ccc;
+    color: #ddd;
     cursor: not-allowed;
 }
 
 .nav-arrow i {
-    font-size: 24px;
-    color: #333;
+    font-size: 17px;
+    color: #fff;
 }
-
-.nav-arrow:hover {
-    background-color: #f0f0f0;
-}
-
 
 button {
     display: flex;
@@ -202,16 +202,12 @@ button {
 
 button .svg-icon {
     color: var(--color-text);
-    height: 16px;
-    width: 16px
+    height: 10px;
+    width: 10px
 }
 
 button:first-child {
     margin-left: 0
-}
-
-button:hover {
-    background: var(--color-secondary-bg-for-transparent)
 }
 
 button:active {
@@ -219,13 +215,16 @@ button:active {
 }
 
 header {
-    background-color: #fff;
-    padding: 15px 0;
+    background-color: #0062FF;
+    padding: 0 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0px;
     z-index: 9;
+    height: 64px;
+    padding-top: 10px;
+    box-sizing: border-box;
 }
 
 .nav-arrow,
@@ -247,23 +246,20 @@ header {
 
 .nav-links {
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    gap: 12px;
+    justify-content: left;
     flex-grow: 1;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: #fff;
     -webkit-app-region: no-drag;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 400;
     padding: 6px 10px;
     transition: .2s;
     -webkit-user-drag: none;
-    margin-right: 12px;
-    margin-left: 12px
 }
 
 .nav-links a:hover {
@@ -286,31 +282,35 @@ header {
 }
 
 .search-bar input {
-    padding: 8px 15px;
+    background-color: #fffc;
+    padding: 4px 15px;
     border-radius: 20px;
-    border: 1px solid var(--secondary-color);
-    font-size: 14px;
+    border: 1px solid #fff2;
+    font-size: 12px;
     width: 200px;
+    margin-right: 20px;
     transition: width 0.3s ease;
+    color: #fff;
 }
 
 .search-bar input:focus {
     width: 250px;
     outline: none;
-    border-color: var(--primary-color);
+    border-color: #fff2;
 }
 
 .profile {
-    width: 40px;
-    height: 40px;
+    margin-right: 70px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background-color: var(--secondary-color);
+    background-color: #fff2;
     cursor: pointer;
     position: relative;
 }
 
 .profile img {
-    width: 41px;
+    width: 100%;
     border-radius: 50%;
 }
 

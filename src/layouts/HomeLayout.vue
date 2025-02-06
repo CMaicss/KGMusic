@@ -101,7 +101,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     margin-bottom: 150px;
-    padding-top: 80px;
+    padding-top: 64px;
     padding-bottom: 150px;
 }
 

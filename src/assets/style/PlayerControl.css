@@ -5,9 +5,9 @@
     justify-content: center;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 80px;
+    margin-top: 40px;
     position: relative;
-    width: 60%;
+    width: 50%;
     text-align: center;
 }
 
@@ -25,8 +25,9 @@
 
 .char {
     display: inline-block;
+    font-size: 18px;
     color: transparent;
-    background: linear-gradient(to right, #FF69B4 50%, #878787 50%);
+    background: linear-gradient(to right, #d6d6d6 50%, #d6d6d6 50%);
     background-size: 200% 100%;
     background-position: 100%;
     -webkit-background-clip: text;
@@ -36,20 +37,20 @@
 
 .highlight {
     background-position: 0%;
+    font-weight: 800;
 }
-
 
 .player-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: calc( 100% - 20px );
     position: fixed;
-    bottom: 0px;
-    background: #FFF;
+    bottom: 8px;
+    left: 10px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, .7);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .9);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -63,8 +64,8 @@
 }
 
 .album-art {
-    width: 60px;
-    height: 60px;
+    width: 44px;
+    height: 44px;
     border-radius: 5px;
     margin-right: 15px;
     background-color: #ddd;
@@ -75,8 +76,8 @@
 }
 
 .album-art img {
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     border-radius: 5px;
 }
 
@@ -131,7 +132,8 @@
 
 
 .progress-bar {
-    width: 100%;
+    margin-top: 10px;
+    width: calc( 100% - 32px );
     height: 6px;
     background-color: #ddd;
     position: relative;
@@ -143,16 +145,16 @@
 .progress {
     width: 30%;
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: #0062FF;
     position: absolute;
     transition: width 0.2s ease;
 }
 
 .progress-handle {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-color: #fff;
-    border: 2px solid var(--primary-color);
+    border: 2px solid #0062FF;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -160,7 +162,7 @@
     opacity: 0;
     transition: opacity 0.2s ease;
     z-index: 2;
-    cursor: grab;
+    cursor: pointer;
     pointer-events: auto;
 }
 .progress-bar:active .progress-handle {
@@ -173,8 +175,7 @@
 }
 
 .progress-bar:hover .progress {
-    background-color: var(--primary-color);
-    opacity: 0.8;
+    background-color: #0062FF;
 }
 
 .extra-controls {
@@ -217,7 +218,7 @@
 
 .volume-progress {
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: #0062FF;
     position: absolute;
     left: 0;
     top: 0;
@@ -248,13 +249,13 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background: #47474761;
+    background: #47474790;
 }
 
 .close-btn {
     position: absolute;
     top: 30px;
-    right: 100px;
+    right: 40px;
     font-size: 24px;
     cursor: pointer;
     color: white;
@@ -272,8 +273,8 @@
 }
 
 .album-art-large img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 10px;
     z-index: 9;
 }
@@ -305,7 +306,7 @@
 .progress-bar {
     flex-grow: 1;
     height: 2px;
-    background-color: #555;
+    background-color: #FFF;
     border-radius: 5px;
     margin: 0 10px;
     position: relative;
@@ -314,7 +315,7 @@
 .progress {
     width: 50%;
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: #0062FF;
     border-radius: 5px;
 }
 
@@ -411,7 +412,7 @@
     background: none;
     border: none;
     font-size: 16px;
-    color: var(--primary-color);
+    color: #0062FF;
     cursor: pointer;
 }
 
@@ -471,23 +472,23 @@
 
 .album-art-large .miku {
     position: absolute;
-    height: 419px;
+    height: 300px;
     width: 401px;
 }
 
 .album-art-large .miku2 {
     position: absolute;
-    height: 452px;
+    height: 300px;
     width: 404px;
 }
 
 .album-art-large .miku3 {
     position: absolute;
-    height: 563px;
+    height: 300px;
 }
 
 .no-lyrics {
-    color: var(--primary-color);
+    color: #0062FF;
     margin: auto;
     font-size: 2em;
 }
@@ -499,12 +500,12 @@
 }
 
 .queue-item.playing .queue-song-title {
-    color: var(--primary-color);
+    color: #0062FF;
     font-weight: bold;
 }
 
 .queue-item.playing .queue-artist {
-    color: var(--primary-color);
+    color: #0062FF;
 }
 
 .queue-item.marked-as-deleted {
@@ -578,8 +579,8 @@
 
 /* 普通界面的高潮点样式 */
 .player-container .climax-point {
-    background-color: var(--primary-color);
-    box-shadow: 0 0 4px var(--primary-color);
+    background-color: #0062FF;
+    box-shadow: 0 0 4px #0062FF;
 }
 
 /* 歌词界面的高潮点样式 */
@@ -642,7 +643,7 @@
 .modal .close-btn-modal {
     width: 100%;
     padding: 8px;
-    background-color: var(--primary-color);
+    background-color: #0062FF;
     color: white;
     border: none;
     border-radius: 4px;

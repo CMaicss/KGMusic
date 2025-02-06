@@ -20,16 +20,16 @@ let tray = null;
 export function createWindow() {
     const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
 
-    const windowWidth = Math.min(1200, screenWidth * 0.8);
-    const windowHeight = Math.min(938, screenHeight * 0.9);
+    const windowWidth = Math.min(880, screenWidth * 0.8);
+    const windowHeight = Math.min(700, screenHeight * 0.9);
     const lastWindowState = store.get('windowState') || {};
     mainWindow = new BrowserWindow({
         width: lastWindowState.width || windowWidth,
         height: lastWindowState.height || windowHeight,
         x: lastWindowState.x || Math.floor((screenWidth - windowWidth) / 2),
         y: lastWindowState.y || Math.floor((screenHeight - windowHeight) / 2),
-        minWidth: 980,
-        minHeight: 800,
+        minWidth: 880,
+        minHeight: 700,
         frame: false,
         titleBarStyle: 'hiddenInset',
         autoHideMenuBar: true,

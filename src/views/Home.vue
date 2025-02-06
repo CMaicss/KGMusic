@@ -1,58 +1,20 @@
 <template>
     <div class="container">
-        <h2 class="section-title">{{ $t('tui-jian') }}</h2>
-        <div class="recommendations">
-            <div class="recommend-card">
-                <div class="radio-card">
-                    <div class="radio-left">
-                        <div class="disc-container">
-                            <img src="@/assets/images/home/radio-disc.png" class="radio-disc" alt="Radio disc">
-                        </div>
-                        <div class="decorative-box">
-                            <div class="music-bars">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                            </div>
-                        </div>
-                        <div class="play-button" @click="playFM"></div>
-                        <div class="note-container">
-                            <transition-group name="fly-note">
-                                <div v-for="note in flyingNotes" 
-                                     :key="note.id" 
-                                     class="flying-note"
-                                     :style="note.style">♪</div>
-                            </transition-group>
-                        </div>
+        <h2 class="section-title">{{ $t('tui-jian-ge-dan') }}</h2>
+        <div class="playlist-grid">
+            <div class="playlist-item" v-for="(playlist, index) in special_list" :key="index">
+                <router-link :to="{
+                    path: '/PlaylistDetail',
+                    query: { global_collection_id: playlist.global_collection_id }
+                }">
+                    <img :src="$getCover(playlist.flexible_cover, 240)" class="playlist-cover">
+                    <div class="playlist-info">
+                        <div class="playlist-title">{{ playlist.specialname }}</div>
+                        <!-- <div class="playlist-description">{{ playlist.intro }}</div> -->
                     </div>
-                    <div class="radio-content">
-                        <div class="radio-title">
-                            <span class="heart-icon">💖</span>
-                            MoeKoe Radio
-                            <span class="shuffle-icon" @click="toggleMode">{{ modeIcon }}</span>
-                        </div>
-                        <div class="radio-subtitle">{{ radioSubtitle }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="recommend-card">
-                <a href="https://activity.kugou.com/getvips/v-4163b2d0/index.html" target="_blank"><img
-                        src="@/assets/images/home/recommend2.png" class="recommend-image" title="每日领取VIP"></a>
-            </div>
-
-            <div class="recommend-card">
-                <div class="card-content">
-                    <router-link :to="{
-                        path: '/PlaylistDetail',
-                        query: { global_collection_id: 'collection_3_25230245_24_0' }
-                    }">
-                        <img src="@/assets/images/home/recommend3.png" class="recommend-image" title="阿珏酱の歌单">
-                    </router-link>
-                </div>
+                </router-link>
             </div>
         </div>
-
         <h2 class="section-title">{{ $t('mei-ri-tui-jian') }}</h2>
         <div v-if="isLoading" class="skeleton-loader">
             <div v-for="n in 16" :key="n" class="skeleton-item">
@@ -72,21 +34,6 @@
                     <div class="song-title">{{ song.ori_audio_name }}</div>
                     <div class="song-artist">{{ song.author_name }}</div>
                 </div>
-            </div>
-        </div>
-        <h2 class="section-title">{{ $t('tui-jian-ge-dan') }}</h2>
-        <div class="playlist-grid">
-            <div class="playlist-item" v-for="(playlist, index) in special_list" :key="index">
-                <router-link :to="{
-                    path: '/PlaylistDetail',
-                    query: { global_collection_id: playlist.global_collection_id }
-                }">
-                    <img :src="$getCover(playlist.flexible_cover, 240)" class="playlist-cover">
-                    <div class="playlist-info">
-                        <div class="playlist-title">{{ playlist.specialname }}</div>
-                        <div class="playlist-description">{{ playlist.intro }}</div>
-                    </div>
-                </router-link>
             </div>
         </div>
         <ContextMenu ref="contextMenuRef" :playerControl="playerControl" />
@@ -221,13 +168,14 @@ const playlist = async () => {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 0;
 }
 
 .section-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 28px;
+    color: #222;
 }
 
 .recommendations {
@@ -264,6 +212,7 @@ const playlist = async () => {
 .song-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     margin-top: 20px;
 }
@@ -272,23 +221,16 @@ const playlist = async () => {
     display: flex;
     align-items: center;
     gap: 15px;
-    width: 250px;
+    width: 200px;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
     cursor: pointer;
-}
-
-.song-item:hover {
-    transform: translateY(-5px);
 }
 
 .song-cover {
     width: 50px;
     height: 50px;
-    border-radius: 5px;
 }
 
 .song-info {
@@ -299,13 +241,13 @@ const playlist = async () => {
 .song-title {
     font-size: 16px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: #222;
 }
 
 .song-artist {
     font-size: 14px;
     color: #666;
-    width: 185px;
+    width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -313,24 +255,25 @@ const playlist = async () => {
 
 .playlist-grid {
     display: flex;
-    gap: 35px;
+    gap: 48px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .playlist-item {
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 6px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 160px;
+    height: 160px;
+    position: relative;
 }
 
 .playlist-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px var(--color-box-shadow);
 }
 
 .playlist-cover {
@@ -340,18 +283,23 @@ const playlist = async () => {
 }
 
 .playlist-info {
-    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0));
 }
 
 .playlist-title {
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 16px;
-    color: var(--primary-color);
+    color: #FFF;
 }
 
 .playlist-description {
-    color: #666;
+    color: #FFF9;
     font-size: 14px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -528,7 +476,7 @@ const playlist = async () => {
 
 .play-button:hover {
     transform: scale(1.05);
-    background: var(--primary-color);
+    background: #0062FF;
     color: #fff;
 }
 
@@ -577,7 +525,7 @@ const playlist = async () => {
 
 .shuffle-icon:hover {
     transform: scale(1.1);
-    color: var(--primary-color);
+    color: #0062FF;
 }
 
 .radio-subtitle {
@@ -598,7 +546,7 @@ const playlist = async () => {
 .flying-note {
     position: absolute;
     font-size: 36px;
-    color: var(--primary-color);
+    color: #0062FF;
     pointer-events: none;
     transform-origin: center;
 }
