@@ -1,21 +1,21 @@
-import { app, ipcMain, globalShortcut, dialog } from 'electron';
-import { createWindow, createTray, startApiServer, stopApiServer, registerShortcut, playStartupSound, createLyricsWindow } from './appServices.js';
+import { app, ipcMain, globalShortcut, dialog, Notification } from 'electron';
+import { 
+    createWindow, createTray, startApiServer, 
+    stopApiServer, registerShortcut, 
+    playStartupSound, createLyricsWindow, setThumbarButtons 
+} from './appServices.js';
 import Store from 'electron-store';
-// import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
-// const { initialize, enable } = require('@electron/remote/main');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 let mainWindow = null;
 const store = new Store();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.on('ready', () => {
-    // 初始化 @electron/remote
-    // initialize();
-    
     startApiServer().then(() => {
         try {
             mainWindow = createWindow();
-            // enable(mainWindow.webContents);
             createTray(mainWindow);
             playStartupSound();
             registerShortcut();
@@ -51,6 +51,13 @@ app.on('ready', () => {
         });
     });
 });
+
+const settings = store.get('settings');
+if(settings?.gpuAcceleration === 'off'){
+    app.disableHardwareAcceleration();
+    app.commandLine.appendSwitch('enable-transparent-visuals');
+    app.commandLine.appendSwitch('disable-gpu-compositing');
+}
 
 // 即将退出
 app.on('before-quit', () => {
@@ -118,24 +125,10 @@ ipcMain.on('custom-shortcut', (event) => {
     registerShortcut();
 });
 
-ipcMain.on('update-current-time', (event, time) => {
+ipcMain.on('lyrics-data', (event, data) => {
     const lyricsWindow = mainWindow.lyricsWindow;
     if (lyricsWindow) {
-        lyricsWindow.webContents.send('update-current-time', time);
-    }
-});
-
-ipcMain.on('lyrics-data', (event, lyricsData) => {
-    const lyricsWindow = mainWindow.lyricsWindow;
-    if (lyricsWindow) {
-        lyricsWindow.webContents.send('lyrics-data', lyricsData);
-    }
-});
-
-ipcMain.on('lyrics-font-size', (event, fontSize) => {
-    const lyricsWindow = mainWindow.lyricsWindow;
-    if (lyricsWindow) {
-        lyricsWindow.webContents.send('lyrics-font-size', fontSize);
+        lyricsWindow.webContents.send('lyrics-data', data);
     }
 });
 
@@ -155,6 +148,11 @@ ipcMain.on('desktop-lyrics-action', (event, action) => {
             const lyricsWindow = mainWindow.lyricsWindow;
             if (lyricsWindow) {
                 lyricsWindow.close();
+                new Notification({
+                    title: '桌面歌词已关闭',
+                    body: '仅本次生效',
+                    icon: path.join(__dirname, '../build/icons/logo.png')
+                }).show();
             }
             break;
         case 'display-lyrics':
@@ -169,3 +167,18 @@ ipcMain.on('set-ignore-mouse-events', (event, ignore) => {
         lyricsWindow.setIgnoreMouseEvents(ignore, { forward: true });
     }
 });
+
+ipcMain.on('window-drag', (event, { mouseX, mouseY }) => {
+    const lyricsWindow = mainWindow.lyricsWindow;
+    if (!lyricsWindow) return
+    lyricsWindow.setPosition(mouseX, mouseY)
+    store.set('lyricsWindowPosition', { x: mouseX, y: mouseY });
+})
+
+ipcMain.on('play-pause-action',(event, playing) =>{
+    const lyricsWindow = mainWindow.lyricsWindow;
+    if (lyricsWindow) {
+        lyricsWindow.webContents.send('playing-status', playing);
+    }
+    setThumbarButtons(mainWindow, playing);
+})

@@ -620,12 +620,15 @@ audio.addEventListener('ended', () => {
     if (currentPlaybackModeIndex.value == 2) return;
     playSongFromQueue('next');
 });
-audio.addEventListener('pause', () => {
-    playing.value = false;
-});
-audio.addEventListener('play', () => {
-    playing.value = true;
-});
+const handleAudioEvent = (event) => {
+    playing.value = event.type === 'play';
+    if(isElectron()){
+        window.electron.ipcRenderer.send('play-pause-action', playing.value);
+    }
+};
+
+audio.addEventListener('pause', handleAudioEvent);
+audio.addEventListener('play', handleAudioEvent);
 const toggleQueue = async () => {
     showQueue.value = !showQueue.value;
     if (showQueue.value) {
@@ -688,10 +691,6 @@ const parseLyrics = (text) => {
         })
         .filter((line) => line);
     lyricsData.value = parsedLyrics;
-    const savedConfig = JSON.parse(localStorage.getItem('settings'));
-    if (isElectron() && savedConfig?.desktopLyrics === 'on') {
-        window.electron.ipcRenderer.send('lyrics-data', parsedLyrics);
-    }
 };
 
 // 添加到下一首 
@@ -769,7 +768,7 @@ const throttledHighlight = throttle(() => {
             highlightCurrentChar(audio.currentTime);
         }
         if (isElectron() && savedConfig?.desktopLyrics === 'on') {
-            window.electron.ipcRenderer.send('update-current-time', audio.currentTime);
+            window.electron.ipcRenderer.send('lyrics-data', { currentTime: audio.currentTime, lyricsData: JSON.parse(JSON.stringify(lyricsData.value)) });
         }
     } else if (isElectron() && savedConfig?.desktopLyrics === 'on') {
         getLyrics(currentSong.value.hash)
@@ -972,8 +971,16 @@ const updateTimeTooltip = (event) => {
 
     const rect = progressBar.getBoundingClientRect();
     const offsetX = Math.max(0, Math.min(event.clientX - rect.left, progressBar.offsetWidth));
+    
+    const tooltipWidth = 50;
+    if (offsetX < tooltipWidth / 2) {
+        tooltipPosition.value = tooltipWidth / 2;
+    } else if (offsetX > progressBar.offsetWidth - tooltipWidth / 2) {
+        tooltipPosition.value = progressBar.offsetWidth - tooltipWidth / 2;
+    } else {
+        tooltipPosition.value = offsetX;
+    }
 
-    tooltipPosition.value = offsetX;
     const percentage = (offsetX / progressBar.offsetWidth);
     const time = percentage * audio.duration;
     tooltipTime.value = formatTime(time);

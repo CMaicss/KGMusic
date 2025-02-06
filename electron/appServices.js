@@ -90,14 +90,19 @@ let lyricsWindow;
 
 export function createLyricsWindow() {
     const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
-    const windowWidth = 800;
-    const windowHeight = 150;
+    const windowWidth = Math.floor(screenWidth * 0.7);
+    const windowHeight = 200;
+
+    const savedLyricsPosition = store.get('lyricsWindowPosition') || {
+        x: Math.floor((screenWidth - windowWidth) / 2),
+        y: screenHeight - windowHeight
+    };
 
     lyricsWindow = new BrowserWindow({
         width: windowWidth,
         height: windowHeight,
-        x: Math.floor((screenWidth - windowWidth) / 2),
-        y: screenHeight - windowHeight,
+        x: savedLyricsPosition.x,
+        y: savedLyricsPosition.y,
         alwaysOnTop: true,
         frame: false,
         transparent: true,
@@ -109,10 +114,14 @@ export function createLyricsWindow() {
             contextIsolation: true,
             nodeIntegration: false,
             sandbox: false,
-            webSecurity: true
+            webSecurity: true,
+            backgroundThrottling: false, 
         }
     });
     mainWindow.lyricsWindow = lyricsWindow;
+    lyricsWindow.on('closed', () => {
+        mainWindow.lyricsWindow = null;
+    });
     if (isDev) {
         lyricsWindow.loadURL('http://localhost:8080/#/lyrics');
         lyricsWindow.webContents.openDevTools();
