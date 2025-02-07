@@ -263,10 +263,12 @@ const sharePlaylist = () => {
 }
 
 .album-art {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-left: 30px;
+    margin-right: 50px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
 }
 
 .playlist-info {
@@ -274,7 +276,7 @@ const sharePlaylist = () => {
 }
 
 .playlist-title {
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
     width: 800px;
     overflow: hidden;
@@ -283,8 +285,8 @@ const sharePlaylist = () => {
 }
 
 .playlist-subtitle {
-    font-size: 18px;
-    color: #666;
+    font-size: 16px;
+    color: #999;
 }
 
 .playlist-meta {
@@ -305,14 +307,14 @@ const sharePlaylist = () => {
 
 .playlist-actions {
     display: flex;
-    gap: 10px;
+    gap: 18px;
 }
 
 .play-btn {
-    background-color: #ff69b4;
+    background-color: #0094ff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 0 20px;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -326,11 +328,12 @@ const sharePlaylist = () => {
 .fav-btn,
 .more-btn {
     background-color: transparent;
-    border: 1px solid #ccc;
     padding: 10px;
+    width: 40px;
+    color: #0094ff;
     border-radius: 5px;
     cursor: pointer;
-    border:1px solid var(--secondary-color);
+    border:1px solid #0094ff;
 }
 
 .fav-btn i{
@@ -351,18 +354,20 @@ const sharePlaylist = () => {
 }
 
 .search-input {
-    width: 250px; 
-    padding: 8px;
-    border: 1px solid var(--secondary-color);
+    width: 200px; 
+    padding: 6px 8px;
+    border: 1px solid #ccc;
     border-radius: 20px;
     box-sizing: border-box;
     padding-left: 15px;
 }
 
+.search-input:focus {
+    outline: none;
+    border-color: #0094ff;
+}
 .track-list-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .track-list .li {
@@ -370,7 +375,8 @@ const sharePlaylist = () => {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    /* border-bottom: 1px solid #eee; */
     padding-left: 10px;
     border-radius: 5px;
     padding-right: 10px;
@@ -383,7 +389,8 @@ const sharePlaylist = () => {
 
 .track-number {
     font-weight: bold;
-    margin-right: 10px;
+    color: #aaa;
+    margin-right: 4px;
     width: 30px;
 }
 

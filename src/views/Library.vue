@@ -10,7 +10,7 @@
                 :src="`./assets/images/${userVip[1].product_type === 'svip' ? 'vip2' : 'vip'}.png`"
                 :title="`${$t('chang-ting-ban')} ${userVip[1].vip_end_time}`" />
         </div>
-        <h2 class="section-title" style="margin-bottom: 0px;">{{ $t('wo-xi-huan-ting') }}</h2>
+        <!-- <h2 class="section-title" style="margin-bottom: 0px;">{{ $t('wo-xi-huan-ting') }}</h2>
         <div class="favorite-section">
             <div class="song-list">
                 <div v-if="isLoading" class="skeleton-loader">
@@ -34,7 +34,7 @@
                 </ul>
                 <el-empty v-else :description="t('zhe-li-shi-mo-du-mei-you')" />
             </div>
-        </div>
+        </div> -->
 
         <!-- 分类导航 -->
         <div class="category-tabs">
@@ -216,21 +216,22 @@ const createPlaylist = async () => {
 
 
 .section-title {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 30px;
-    color: var(--primary-color);
+    color: #4b5057;
 }
 
 .profile-section {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .profile-pic {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 64px;
+    height: 64px;
     margin-right: 15px;
 }
 
@@ -305,12 +306,12 @@ const createPlaylist = async () => {
 
 .category-tabs {
     display: flex;
-    gap: 20px;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
 .category-tabs button {
-    padding: 10px 15px;
+    padding: 6px 15px;
     border: none;
     background-color: #f5f5f5;
     border-radius: 20px;
@@ -318,7 +319,7 @@ const createPlaylist = async () => {
 }
 
 .category-tabs button.active {
-    background-color: var(--primary-color);
+    background-color: #0062FF;
     color: white;
 }
 
