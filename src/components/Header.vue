@@ -287,14 +287,14 @@ header {
     border-radius: 20px;
     border: 1px solid #fff2;
     font-size: 12px;
-    width: 200px;
+    width: 160px;
     margin-right: 20px;
     transition: width 0.3s ease;
     color: #fff;
 }
 
 .search-bar input:focus {
-    width: 250px;
+    width: 180px;
     outline: none;
     border-color: #fff2;
 }

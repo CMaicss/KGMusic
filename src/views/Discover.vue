@@ -1,7 +1,5 @@
 <template>
     <div class="discover-page">
-        <h2 class="section-title">{{ $t('fa-xian') }}</h2>
-        
         <div class="category-container">
             <div class="main-categories">
                 <button v-for="(category, index) in categories" 
@@ -139,13 +137,6 @@ const playlist = async () => {
     padding: 20px;
 }
 
-.section-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: var(--primary-color);
-}
-
 .category-container {
     margin-bottom: 30px;
 }
@@ -164,53 +155,55 @@ const playlist = async () => {
 }
 
 .main-categories button {
-    background-color: var(--secondary-color);
-    color: #fff;
+    background-color: #f5f5f5;
+    color: #333;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 15px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .main-categories button.active {
-    background-color: var(--primary-color);
+    background-color: #0062FF;
+    color: #fff;
 }
 
 .sub-categories button {
     background-color: #f5f5f5;
+    color: #333;
     border: none;
-    padding: 8px 15px;
+    padding: 5px 15px;
     border-radius: 15px;
     cursor: pointer;
     font-size: 14px;
 }
 
 .sub-categories button.active {
-    background-color: var(--secondary-color);
+    background-color: #0062FF;
     color: #fff;
 }
 
 .music-grid {
     display: flex;
-    gap: 15px;
+    gap: 28px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .music-card {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 10px;
     text-align: center;
-    width: 200px;
+    width: 160px;
 }
 
 .music-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px var(--color-box-shadow)
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1)
 }
 
 .music-card img {
@@ -246,7 +239,7 @@ const playlist = async () => {
     background-color: #f0f0f0;
     border-radius: 10px;
     padding: 10px;
-    width: 200px;
+    width: 160px;
     text-align: center;
     height: 250px;
 }
