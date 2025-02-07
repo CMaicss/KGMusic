@@ -61,7 +61,7 @@ if(settings?.gpuAcceleration === 'off'){
 
 // 即将退出
 app.on('before-quit', () => {
-    if (mainWindow) {
+    if (mainWindow && !mainWindow.isMaximized()) {
         const windowBounds = mainWindow.getBounds();
         store.set('windowState', windowBounds);
     }
@@ -100,7 +100,12 @@ ipcMain.on('disclaimer-response', (event, accepted) => {
 ipcMain.on('window-control', (event, action) => {
     switch (action) {
         case 'close':
-            mainWindow.close();
+            if(store.get('settings')?.minimizeToTray === 'off'){
+                app.isQuitting = true;
+                app.quit();
+            }else{
+                mainWindow.close();
+            }
             break;
         case 'minimize':
             mainWindow.minimize();
@@ -108,8 +113,10 @@ ipcMain.on('window-control', (event, action) => {
         case 'maximize':
             if (mainWindow.isMaximized()) {
                 mainWindow.unmaximize();
+                store.set('maximize', false);
             } else {
                 mainWindow.maximize();
+                store.set('maximize', true);
             }
             break;
     }
