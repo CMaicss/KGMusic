@@ -530,7 +530,7 @@ const playlist = async () => {
 
 .play-button:hover {
     transform: scale(1.05);
-    background: #0062FF;
+    background: var(--primary-color);
     color: #fff;
 }
 
@@ -567,7 +567,7 @@ const playlist = async () => {
 
 .shuffle-icon:hover {
     transform: scale(1.1);
-    color: #0062FF;
+    color: var(--primary-color);
 }
 
 .radio-subtitle {
@@ -589,7 +589,7 @@ const playlist = async () => {
 .flying-note {
     position: absolute;
     font-size: 36px;
-    color: #0062FF;
+    color: var(--primary-color);
     pointer-events: none;
     transform-origin: center;
 }

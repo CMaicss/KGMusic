@@ -245,7 +245,7 @@ const { proxy } = getCurrentInstance();
 
 const selectedSettings = ref({
     language: { displayText: '🌏 ' + t('zi-dong'), value: '' },
-    themeColor: { displayText: t('shao-nv-fen'), value: 'pink' },
+    themeColor: { displayText: t('shao-nv-fen'), value: 'default' },
     theme: { displayText: '☀️ ' + t('qian-se'), value: 'light' },
     quality: { displayText: t('pu-tong-yin-zhi'), value: 'normal' },
     lyricsBackground: { displayText: t('da-kai'), value: 'on' },
@@ -274,6 +274,7 @@ const selectionTypeMap = {
     themeColor: {
         title: t('xuan-ze-zhu-se-tiao'),
         options: [
+            { displayText: t('mo-ren-yan-se'), value: 'default' },
             { displayText: t('shao-nv-fen'), value: 'pink' },
             { displayText: t('nan-nan-lan'), value: 'blue' },
             { displayText: t('tou-ding-lv'), value: 'green' },

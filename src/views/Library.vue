@@ -323,7 +323,7 @@ const createPlaylist = async () => {
 }
 
 .category-tabs button.active {
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     color: white;
 }
 

@@ -227,7 +227,7 @@ onMounted(async () => {
 }
 
 .rank-chip.active {
-    background: #0062FF;
+    background: var(--primary-color);
     color: white;
 }
 
@@ -317,7 +317,7 @@ onMounted(async () => {
 
 .rank-play-btn:hover {
     transform: scale(1.1);
-    background: #0062FF;
+    background: var(--primary-color);
 }
 
 .rank-play-btn:hover i {
@@ -326,7 +326,7 @@ onMounted(async () => {
 
 .rank-play-btn i {
     font-size: 20px;
-    color: #0062FF;
+    color: var(--primary-color);
     transition: color 0.3s ease;
 }
 

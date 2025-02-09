@@ -27,7 +27,7 @@ export const applyColorTheme = (theme) => {
             '--color-secondary-bg-for-transparent': 'rgba(209, 209, 214, 0.28)',
             '--color-box-shadow': 'rgba(255, 105, 180, 0.2)',
         };
-    } else {
+    } else if (theme === 'pink') {
         colors = {
             '--primary-color': '#FF69B4',
             '--secondary-color': '#FFB6C1',
@@ -35,6 +35,15 @@ export const applyColorTheme = (theme) => {
             '--color-primary': '#ea33e4',
             '--color-secondary-bg-for-transparent': 'rgba(209, 209, 214, 0.28)',
             '--color-box-shadow': 'rgba(255, 105, 180, 0.2)',
+        };
+    } else {
+        colors = {
+            '--primary-color': '#0062FF',
+            '--secondary-color': '#AEDFF7',
+            '--background-color': '#E8F4FA',
+            '--color-primary': '#2A6DAF',
+            '--color-secondary-bg-for-transparent': 'rgba(174, 223, 247, 0.28)',
+            '--color-box-shadow': 'rgba(74, 144, 226, 0.2)',
         };
     }
 

@@ -215,7 +215,7 @@ button:active {
 }
 
 header {
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     padding: 0 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;

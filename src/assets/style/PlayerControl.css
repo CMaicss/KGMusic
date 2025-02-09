@@ -148,7 +148,7 @@
 .progress {
     width: 30%;
     height: 100%;
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     position: absolute;
     transition: width 0.2s ease;
 }
@@ -157,7 +157,7 @@
     width: 10px;
     height: 10px;
     background-color: #fff;
-    border: 2px solid #0062FF;
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -178,7 +178,7 @@
 }
 
 .progress-bar:hover .progress {
-    background-color: #0062FF;
+    background-color: var(--primary-color);
 }
 
 .extra-controls {
@@ -221,7 +221,7 @@
 
 .volume-progress {
     height: 100%;
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     position: absolute;
     left: 0;
     top: 0;
@@ -326,7 +326,7 @@
 .progress {
     width: 50%;
     height: 100%;
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     border-radius: 5px;
 }
 
@@ -423,7 +423,7 @@
     background: none;
     border: none;
     font-size: 16px;
-    color: #0062FF;
+    color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -499,7 +499,7 @@
 }
 
 .no-lyrics {
-    color: #0062FF;
+    color: var(--primary-color);
     margin: auto;
     font-size: 2em;
 }
@@ -511,12 +511,12 @@
 }
 
 .queue-item.playing .queue-song-title {
-    color: #0062FF;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 .queue-item.playing .queue-artist {
-    color: #0062FF;
+    color: var(--primary-color);
 }
 
 .queue-item.marked-as-deleted {
@@ -590,8 +590,8 @@
 
 /* 普通界面的高潮点样式 */
 .player-container .climax-point {
-    background-color: #0062FF;
-    box-shadow: 0 0 4px #0062FF;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 4px var(--primary-color);
 }
 
 /* 歌词界面的高潮点样式 */
@@ -654,7 +654,7 @@
 .modal .close-btn-modal {
     width: 100%;
     padding: 8px;
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;

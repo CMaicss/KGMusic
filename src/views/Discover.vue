@@ -165,7 +165,7 @@ const playlist = async () => {
 }
 
 .main-categories button.active {
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -180,7 +180,7 @@ const playlist = async () => {
 }
 
 .sub-categories button.active {
-    background-color: #0062FF;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
