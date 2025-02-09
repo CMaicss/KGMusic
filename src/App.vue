@@ -17,6 +17,10 @@ const isLyricsRoute = computed(() => route.path === '/lyrics');
 </script>
 
 <style scoped>
+@import '@/assets/font/font.css';
+#app {
+    font-family: HarmonyOS_Sans_Regular;
+}
 .container {
     max-width: 1400px;
     margin: 0 auto;
