@@ -12,7 +12,7 @@
             <div class="setting-item" @click="openSelection('themeColor')">
                 <span>{{ $t('zhu-se-tiao') }}</span>
                 <div class="setting-control">
-                    <span>🎨 {{ selectedSettings.themeColor.displayText }}</span>
+                    <span>{{ selectedSettings.themeColor.displayText }}</span>
                 </div>
             </div>
 
@@ -29,13 +29,13 @@
             <div class="setting-item">
                 <span>{{ $t('yin-zhi-xuan-ze') }}</span>
                 <div class="setting-control" @click="openSelection('quality')">
-                    <span>🎧 {{ selectedSettings.quality.displayText }}</span>
+                    <span>{{ selectedSettings.quality.displayText }}</span>
                 </div>
             </div>
             <div class="setting-item">
                 <span>{{ $t('qi-dong-wen-hou-yu') }}</span>
                 <div class="setting-control" @click="openSelection('greetings')">
-                    <span>👋 {{ selectedSettings.greetings.displayText }}</span>
+                    <span>{{ selectedSettings.greetings.displayText }}</span>
                 </div>
             </div>
         </section>
@@ -245,7 +245,7 @@ const { proxy } = getCurrentInstance();
 
 const selectedSettings = ref({
     language: { displayText: '🌏 ' + t('zi-dong'), value: '' },
-    themeColor: { displayText: t('shao-nv-fen'), value: 'default' },
+    themeColor: { displayText: t('mo-ren-yan-se'), value: 'default' },
     theme: { displayText: '☀️ ' + t('qian-se'), value: 'light' },
     quality: { displayText: t('pu-tong-yin-zhi'), value: 'normal' },
     lyricsBackground: { displayText: t('da-kai'), value: 'on' },
@@ -583,26 +583,32 @@ const clearShortcut = (key) => {
 
 .setting-section {
     margin-bottom: 30px;
+    padding: 0 60px;
 }
 
 .setting-section h3 {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 400;
     margin-bottom: 10px;
 }
 
 .setting-item {
+    color: #595959;
+    font-size: 14px;
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    padding: 6px 0;
+    border-bottom: 1px solid #f5f5f5;
     cursor: pointer;
 }
 
 .setting-control {
-    background-color: #f5f5f5;
-    padding: 8px 16px;
+    padding: 4px 16px;
     border-radius: 8px;
+}
+
+.setting-control:hover {
+    background-color: #f5f5f5;
 }
 
 .modal {
@@ -620,45 +626,54 @@ const clearShortcut = (key) => {
 }
 
 .modal-content {
-    background: white;
-    padding: 25px;
+    background-color: #f5f5f5;
+    padding: 16px;
     border-radius: 12px;
     width: 90%;
     max-width: 400px;
-    text-align: center;
+    text-align: right;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     animation: slideIn 0.3s ease-in-out;
 }
 
 .modal-content h3 {
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 5px;
     margin-bottom: 20px;
     color: #333;
+    text-align: left;
 }
 
 .modal-content ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    background-color: #FFF;
+    border-radius: 12px;
+    text-align: left;
 }
 
 .modal-content li {
-    padding: 12px;
+    padding: 8px;
+    padding-left: 14px;
     margin: 6px 0;
-    background-color: var(--background-color);
+    /* border-bottom: 1px solid #f5f5f5; */
     border-radius: 8px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.1s;
 }
 
 .modal-content li:hover {
-    background-color:var(--secondary-color);
+    background-color: #eee;
+    /* color: #f5f5f5; */
 }
 
 .modal-content button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: var(--color-primary);
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 6px 20px;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 8px;

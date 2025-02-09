@@ -186,7 +186,7 @@ export function createTray(mainWindow) {
         }
     ]);
 
-    tray.setToolTip('MoeKoe Music');
+    tray.setToolTip('KuGou Music');
     tray.on('right-click', () => {
         tray.popUpContextMenu(contextMenu);
     });

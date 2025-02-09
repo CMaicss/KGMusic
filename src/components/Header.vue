@@ -40,8 +40,8 @@
                                 </router-link>
                             </li>
                             <li>
-                                <a href="https://github.com/iAJue/MoeKoeMusic/releases" target="_blank">
-                                    <i class="fab fa-github"></i> {{ $t('geng-xin') }}
+                                <a href="https://github.com/CMaicss/KGMusic" target="_blank">
+                                    <i class="fab fa-github"></i> GitHub
                                 </a>
                             </li>
                             <li>
@@ -319,10 +319,10 @@ header {
     top: 50px;
     right: 0;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 10px;
-    width: 150px;
+    padding: 6px;
+    width: 120px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -350,14 +350,16 @@ header {
     align-items: center;
     gap: 15px;
     cursor: pointer;
-    padding: 7px 5px;
-    border-radius: 5px;
+    padding: 3px 8px;
+    border-radius: 6px;
     color: #000;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .profile-menu li a:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 .modal-overlay {
