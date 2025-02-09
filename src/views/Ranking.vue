@@ -204,22 +204,21 @@ onMounted(async () => {
 
 .rank-selector {
     display: flex;
+    gap: 10px;
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 16px;
+    margin-bottom: 20px;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .rank-chip {
-    padding: 8px 16px;
-    border-radius: 20px;
-    background: #f5f5f5;
-    color: #666;
-    font-size: 14px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .rank-chip:hover {
@@ -228,14 +227,15 @@ onMounted(async () => {
 }
 
 .rank-chip.active {
-    background: var(--primary-color)!important;
+    background: #0062FF;
     color: white;
 }
 
 .ranking-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
     padding: 20px;
 }
 
@@ -246,6 +246,7 @@ onMounted(async () => {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     height: 600px;
+    width: 340px;
     display: flex;
     flex-direction: column;
 }
@@ -258,14 +259,14 @@ onMounted(async () => {
 .rank-header {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
     position: relative;
     background: linear-gradient(to right, rgba(100, 61, 73, 0.133), transparent)
 }
 
 .rank-cover {
-    width: 100px;
-    height: 100px;
+    width: 64px;
+    height: 64px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -288,9 +289,9 @@ onMounted(async () => {
 }
 
 .rank-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
 }
 
 .rank-update {
@@ -302,8 +303,8 @@ onMounted(async () => {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.9);
     display: flex;
@@ -316,7 +317,7 @@ onMounted(async () => {
 
 .rank-play-btn:hover {
     transform: scale(1.1);
-    background: var(--primary-color);
+    background: #0062FF;
 }
 
 .rank-play-btn:hover i {
@@ -325,21 +326,20 @@ onMounted(async () => {
 
 .rank-play-btn i {
     font-size: 20px;
-    color: var(--primary-color);
+    color: #0062FF;
     transition: color 0.3s ease;
 }
 
 .song-list {
     flex: 1;
     overflow-y: auto;
-    padding: 0 12px;
+    padding: 0;
 }
 
 .song-item {
     display: flex;
     align-items: center;
-    padding: 12px 8px;
-    border-radius: 8px;
+    padding: 10px 6px;
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -349,7 +349,7 @@ onMounted(async () => {
 }
 
 .song-rank {
-    width: 40px;
+    width: 30px;
     text-align: center;
 }
 
@@ -369,11 +369,11 @@ onMounted(async () => {
 
 .song-cover {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     border-radius: 8px;
     overflow: hidden;
-    margin: 0 16px;
+    margin: 0 10px;
 }
 
 .song-cover img {
@@ -435,7 +435,7 @@ onMounted(async () => {
 
 .song-author {
     font-size: 13px;
-    color: #666;
+    color: #6669;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

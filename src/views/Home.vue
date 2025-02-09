@@ -25,12 +25,8 @@
                         </div>
                     </div>
                     <div class="radio-content gradient-background">
-                        <div class="radio-title">
-                            <span class="heart-icon">💖</span>
-                            MoeKoe Radio
-                            <span class="shuffle-icon" @click="toggleMode">{{ modeIcon }}</span>
-                        </div>
-                        <div class="radio-subtitle">{{ radioSubtitle }}</div>
+                        <div class="radio-title">私人电台</div>
+                        <div class="radio-subtitle">发现你的专属好歌</div>
                     </div>
                 </div>
             </div>
@@ -46,25 +42,9 @@
                             <div class="ranking-bar"></div>
                         </div>
                         <h3 class="ranking-title">排行榜</h3>
-                        <div class="ranking-description">发现你的专属好歌</div>
+                        <div class="ranking-description">看看大家都在听什么</div>
                     </div>
                 </router-link>
-            </div>
-
-            <div class="recommend-card">
-                <div class="playlist-entry gradient-background">
-                    <router-link :to="{
-                        path: '/PlaylistDetail',
-                        query: { global_collection_id: 'collection_3_25230245_24_0' }
-                    }">
-                        <div class="playlist-content">
-                            <div class="playlist-icon">
-                                <img src="@/assets/images/home/hutao.png" />
-                            </div>
-                            <div class="ranking-description">送给也喜欢音乐的你</div>
-                        </div>
-                    </router-link>
-                </div>
             </div>
         </div>
         
@@ -249,6 +229,7 @@ const playlist = async () => {
 
 .recommendations {
     display: flex;
+    justify-content: center;
     gap: 35px;
     margin-bottom: 40px;
 }
@@ -256,14 +237,14 @@ const playlist = async () => {
 .recommend-card {
     width: 400px;
     height: 200px;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .recommend-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .recommend-image {
