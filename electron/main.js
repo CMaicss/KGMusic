@@ -59,6 +59,11 @@ if(settings?.gpuAcceleration === 'off'){
     app.commandLine.appendSwitch('disable-gpu-compositing');
 }
 
+if(settings?.highDpi === 'on'){
+    app.commandLine.appendSwitch('high-dpi-support', '1');
+    app.commandLine.appendSwitch('force-device-scale-factor', '1');
+}
+
 // 即将退出
 app.on('before-quit', () => {
     if (mainWindow && !mainWindow.isMaximized()) {

@@ -43,21 +43,25 @@
         <section class="setting-section">
             <h3>{{ $t('ge-ci') }}</h3>
             <div class="setting-item" @click="openSelection('lyricsBackground')">
-                <span>{{ $t('xian-shi-ge-ci-bei-jing') }}</span>
+                <span>{{ $t('xian-shi-ge-ci-bei-jing') }}
+                    <span v-if="showRefreshHint.lyricsBackground" class="refresh-hint"> {{ $t('shua-xin-hou-sheng-xiao') }}</span>
+                </span>
                 <div class="setting-control">
                     <span>{{ selectedSettings.lyricsBackground.displayText }}</span>
                 </div>
             </div>
             
             <div class="setting-item" @click="openSelection('lyricsFontSize')">
-                <span>{{ $t('ge-ci-zi-ti-da-xiao') }}</span>
+                <span>{{ $t('ge-ci-zi-ti-da-xiao') }}
+                    <span v-if="showRefreshHint.lyricsFontSize" class="refresh-hint"> {{ $t('shua-xin-hou-sheng-xiao') }}</span>
+                </span>
                 <div class="setting-control">
                     <span>{{ selectedSettings.lyricsFontSize.displayText }}</span>
                 </div>
             </div>
 
             <div class="setting-item" @click="openSelection('desktopLyrics')">
-                <span>{{ $t('xian-shi-zhuo-mian-ge-ci') }} (实验性功能)</span>
+                <span>{{ $t('xian-shi-zhuo-mian-ge-ci') }}</span>
                 <div class="setting-control">
                     <span>{{ selectedSettings.desktopLyrics.displayText }}</span>
                 </div>
@@ -68,9 +72,20 @@
         <section class="setting-section">
             <h3>{{ $t('xi-tong') }}</h3>
             <div class="setting-item" @click="openSelection('gpuAcceleration')">
-                <span>{{ $t('jin-yong-gpu-jia-su-zhong-qi-sheng-xiao') }}</span>
+                <span>{{ $t('jin-yong-gpu-jia-su-zhong-qi-sheng-xiao') }}
+                    <span v-if="showRefreshHint.gpuAcceleration" class="refresh-hint"> {{ $t('zhong-qi-hou-sheng-xiao') }}</span>
+                </span>
                 <div class="setting-control">
                     <span>{{ selectedSettings.gpuAcceleration.displayText }}</span>
+                </div>
+            </div>
+            
+            <div class="setting-item" @click="openSelection('highDpi')">
+                <span>{{ $t('shi-pei-gao-dpi') }}
+                    <span v-if="showRefreshHint.highDpi" class="refresh-hint"> {{ $t('zhong-qi-hou-sheng-xiao') }}</span>
+                </span>
+                <div class="setting-control">
+                    <span>{{ selectedSettings.highDpi.displayText }}</span>
                 </div>
             </div>
 
@@ -223,7 +238,6 @@
 import { ref, onMounted, getCurrentInstance, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { MoeAuthStore } from '../stores/store';
-// const globalShortcut = window?.electron?.remote?.globalShortcut;
 
 const MoeAuth = MoeAuthStore();
 const { t } = useI18n();
@@ -236,10 +250,11 @@ const selectedSettings = ref({
     quality: { displayText: t('pu-tong-yin-zhi'), value: 'normal' },
     lyricsBackground: { displayText: t('da-kai'), value: 'on' },
     desktopLyrics: { displayText: t('guan-bi'), value: 'off' },
-    lyricsFontSize: { displayText: t('zhong'), value: '32px' },
+    lyricsFontSize: { displayText: t('zhong'), value: '24px' },
     greetings: { displayText: t('kai-qi'), value: 'on' },
     gpuAcceleration: { displayText: t('guan-bi'), value: 'off' },
-    minimizeToTray: { displayText: t('da-kai'), value: 'on' }
+    minimizeToTray: { displayText: t('da-kai'), value: 'on' },
+    highDpi: { displayText: t('guan-bi'), value: 'off' }
 });
 
 const isSelectionOpen = ref(false);
@@ -298,9 +313,9 @@ const selectionTypeMap = {
     lyricsFontSize: {
         title: t('ge-ci-zi-ti-da-xiao'),
         options: [
-            { displayText: t('xiao'), value: '24px' },
-            { displayText: t('zhong'), value: '32px' },
-            { displayText: t('da'), value: '40px' }
+            { displayText: t('xiao'), value: '20px' },
+            { displayText: t('zhong'), value: '24px' },
+            { displayText: t('da'), value: '32px' }
         ]
     },
     greetings: {
@@ -323,8 +338,21 @@ const selectionTypeMap = {
             { displayText: t('da-kai'), value: 'on' },
             { displayText: t('guan-bi'), value: 'off' }
         ]
+    },
+    highDpi: {
+        title: t('shi-pei-gao-dpi'),
+        options: [
+            { displayText: t('da-kai'), value: 'on' },
+            { displayText: t('guan-bi'), value: 'off' }
+        ]
     }
 };
+
+const showRefreshHint = ref({
+    lyricsBackground: false,
+    lyricsFontSize: false,
+    gpuAcceleration: false,
+});
 
 const openSelection = (type) => {
     isSelectionOpen.value = true;
@@ -332,7 +360,7 @@ const openSelection = (type) => {
 };
 
 const selectOption = (option) => {
-    const electronFeatures = ['desktopLyrics', 'lyricsFontSize', 'gpuAcceleration', 'minimizeToTray'];
+    const electronFeatures = ['desktopLyrics', 'gpuAcceleration', 'minimizeToTray'];
     if (!isElectron() && electronFeatures.includes(selectionType.value)) {
         window.$modal.alert(t('fei-ke-hu-duan-huan-jing-wu-fa-qi-yong'));
         return;
@@ -359,6 +387,9 @@ const selectOption = (option) => {
     actions[selectionType.value]?.();
     saveSettings();
     closeSelection();
+    if (selectionType.value == 'lyricsBackground' || selectionType.value == 'lyricsFontSize' || selectionType.value == 'gpuAcceleration' || selectionType.value == 'highDpi') {
+        showRefreshHint.value[selectionType.value] = true;
+    }
 };
 
 const isElectron = () => {
@@ -750,5 +781,9 @@ const clearShortcut = (key) => {
 .shortcut-modal-footer button.primary {
     background: var(--color-primary);
     color: white;
+}
+
+.refresh-hint {
+    color: red;
 }
 </style>
